@@ -153,3 +153,33 @@ YOLO-Detection/
 ```
 
 这比一开始就追求最复杂模型更适合实际工程，因为每一步都有可验证结果，也能明确知道升级是否真的带来了收益。
+## 桌面应用
+
+项目提供 `desktop_app.py`，可以把 YOLO 实时检测页面封装成独立桌面窗口。
+
+运行：
+
+```powershell
+.\start_yolo_desktop.cmd
+```
+
+桌面程序会：
+
+1. 在后台随机端口启动 Flask。
+2. 加载 YOLO11s V2 模型。
+3. 等待 `/health` 返回正常。
+4. 创建 pywebview 桌面窗口。
+5. 窗口关闭后自动停止后台服务。
+
+如果项目自己的 `.venv` 不可用，脚本会优先使用当前电脑上的：
+
+```text
+%USERPROFILE%\Documents\ChatGPT\test\yolo-project\.venv
+```
+
+也可以在其他电脑上先安装依赖：
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
